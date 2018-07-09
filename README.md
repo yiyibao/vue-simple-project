@@ -1,4 +1,4 @@
-# matrix
+# vue-simple-project
 # node >6
 # 开始
 
@@ -35,8 +35,8 @@ __.babel
     |__utils
     |__vendor.js
 |__build
-       |__webpack.base.conf.js
-	   |__webpack.dev.conf.js
-	   |__webpack.pro.conf.js
+    |__webpack.base.conf.js
+	|__webpack.dev.conf.js
+	|__webpack.pro.conf.js
 
 ```
