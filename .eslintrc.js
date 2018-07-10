@@ -1,39 +1,31 @@
+// https://eslint.org/docs/user-guide/configuring
+
 module.exports = {
-	root: true,
-	parser: 'babel-eslint',
-    "env": {
-        "browser": true,
-        "commonjs": true,
-        "es6": true
-    },
-    extends: 'vue',
-    "parserOptions": {
-        "ecmaFeatures": {
-            "jsx": false
-        },
-        "sourceType": "module"
-    },
-    "rules": {
-        "indent": [
-            "error",
-            "tab"
-		],//tab空格
-		eqeqeq: 0,//禁止检测等于比较
-		'no-console': 0,//禁止检测console
-        "linebreak-style": [
-            "error",
-            "unix"
-		],
-		'camelcase':0,//禁止检测命名
-		'consistent-this':0,//禁止检测命名
-		'no-else-return': "error",
-        "quotes": [
-            "error",
-            "single"
-        ],//单引号
-        "semi": [
-            "warn",
-            "never"
-        ]//不适用分号
-    }
-};
+  root: true,
+  parserOptions: {
+    parser: 'babel-eslint'
+  },
+  env: {
+    browser: true,
+  },
+  extends: [
+    'plugin:vue/essential',
+    'standard'
+  ],
+  // required to lint *.vue files
+  plugins: [
+    'vue'
+  ],
+  // add your custom rules here
+  rules: {
+    'no-multiple-empty-lines': 0,
+    'no-tabs': 'off',
+    'no-new':0,
+    // allow async-await
+    'generator-star-spacing': 'off',
+    // allow debugger during development
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 1,
+    // 禁止重复 import
+    "space-before-function-paren": ["off", "always"]
+  }
+}

@@ -11,5 +11,5 @@ const mutations = {}
 const getters = {}
 
 export default new Vuex.Store({
-	state, mutations, getters
+  state, mutations, getters
 })

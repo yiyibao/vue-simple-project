@@ -1,17 +1,16 @@
 <template>
-	<div>
-		hello world
-		<div>
-			<img src="../assets/abc.jpeg" alt="">
-
-		</div>
-	</div>
+  <div>
+    hello world
+    <div>
+      <img src="../assets/abc.jpeg" alt="">
+    </div>
+  </div>
 </template>
 <script>
-	export default{
+export default {
 
-	}
+}
 </script>
 <style scoped='scoped' lang="scss">
-@import '../style/test.scss';
+  @import '../style/test.scss';
 </style>
