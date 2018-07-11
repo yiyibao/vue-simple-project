@@ -70,10 +70,20 @@ module.exports = merge(baseWebpackConfig, {
 		 // 复制静态文件
 		new CopyWebpackPlugin([
 		{
-			from: path.resolve(__dirname, '../static'),
+			from: path.resolve(__dirname, '../static/js'),
 			to:'static/js',
 			ignore: ['.*']
-		}
+    },
+    {
+			from: path.resolve(__dirname, '../static/css'),
+			to:'static/css',
+			ignore: ['.*']
+    },
+    {
+			from: path.resolve(__dirname, '../static/img'),
+			to:'static/img',
+			ignore: ['.*']
+    }
 		])
 	],
 	devtool: '#source-map'
