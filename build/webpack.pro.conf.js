@@ -55,7 +55,7 @@ module.exports = merge(baseWebpackConfig, {
 	plugins: [
 		new HtmlWebpackPlugin({
 			filename: 'index.html',
-			template: path.resolve(`index.html`),
+			template: path.resolve(`module/${enterdir}/index.html`),
 			inject: true, // 允许注入打包文件
 			minify: {
 			  removeComments: true, // 删除注释
@@ -72,17 +72,17 @@ module.exports = merge(baseWebpackConfig, {
 		 // 复制静态文件
 		new CopyWebpackPlugin([
 		{
-			from: path.resolve(__dirname, '../static/js'),
+			from: path.resolve(__dirname, `../module/${enterdir}/static/js`),
 			to:`static/js`,
 			ignore: ['.*']
     },
     {
-			from: path.resolve(__dirname, '../static/css'),
+			from: path.resolve(__dirname, `../module/${enterdir}/static/css`),
 			to:`static/css`,
 			ignore: ['.*']
     },
     {
-			from: path.resolve(__dirname, '../static/img'),
+			from: path.resolve(__dirname, `../module/${enterdir}/static/img`),
 			to:`static/img`,
 			ignore: ['.*']
     }

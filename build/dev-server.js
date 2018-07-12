@@ -48,10 +48,11 @@ app.use(require('connect-history-api-fallback')())
 
 // serve webpack bundle output
 app.use(devMiddleware)
-
+const enterdir = JSON.parse(process.env.npm_config_argv).remain[0]
+console.log(enterdir)
 // serve pure static assets
 const staticPath = path.posix.join('/', 'static')
-app.use(staticPath, express.static('./static'))
+app.use(staticPath, express.static(`./module/${enterdir}/static`))
 
 var _resolve
 var _reject

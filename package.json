@@ -1,7 +1,7 @@
 {
-  "name": "{{name}}",
-  "description": "{{description}}",
-  "author": "{{author}}",
+  "name": "name",
+  "description": "description",
+  "author": "author",
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",

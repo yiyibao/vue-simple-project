@@ -113,7 +113,7 @@ module.exports = {
 		}),
 		new HtmlWebpackPlugin({
 			filename: 'index.html',
-			template: resolve(`index.html`),
+			template: resolve(`module/${enterdir}/index.html`),
 			inject: true
 		}),
 		new VueLoaderPlugin()
