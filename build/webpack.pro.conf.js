@@ -5,6 +5,8 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const path =require('path')
+const enterdir = JSON.parse(process.env.npm_config_argv).remain[0]
+// console.log(enterdir)
 // 一个优化'压缩CSS的WebPack插件
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 module.exports = merge(baseWebpackConfig, {
@@ -53,7 +55,7 @@ module.exports = merge(baseWebpackConfig, {
 	plugins: [
 		new HtmlWebpackPlugin({
 			filename: 'index.html',
-			template: path.resolve('index.html'),
+			template: path.resolve(`index.html`),
 			inject: true, // 允许注入打包文件
 			minify: {
 			  removeComments: true, // 删除注释
@@ -63,25 +65,25 @@ module.exports = merge(baseWebpackConfig, {
 			chunksSortMode: 'dependency' // 允许控制chunk的排序在插入到HTML之前
 		  }),
 		new MiniCssExtractPlugin({
-			filename: 'static/css/[name][hash].css',
-			chunkFilename: 'static/css/[name][hash].css',
+			filename: `static/css/[name][hash].css`,
+			chunkFilename: `static/css/[name][hash].css`,
 			sourceMap: false
 		}),
 		 // 复制静态文件
 		new CopyWebpackPlugin([
 		{
 			from: path.resolve(__dirname, '../static/js'),
-			to:'static/js',
+			to:`static/js`,
 			ignore: ['.*']
     },
     {
 			from: path.resolve(__dirname, '../static/css'),
-			to:'static/css',
+			to:`static/css`,
 			ignore: ['.*']
     },
     {
 			from: path.resolve(__dirname, '../static/img'),
-			to:'static/img',
+			to:`static/img`,
 			ignore: ['.*']
     }
 		])

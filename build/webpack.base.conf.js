@@ -1,27 +1,29 @@
-const {
-	resolve
-} = require('path')
+const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const publicPath = '/'
-
+const enterdir = process.argv.splice(2)[0]
+function resolve (dir) {
+  return path.join(__dirname, '..', dir)
+}
 module.exports = {
 	entry: {
-		vendor: './src/vendor',
-		index: ['babel-polyfill', './src/main.js']
-	},
+    index: ['webpack-hot-middleware/client?noInfo=true&reload=true','./module/' + enterdir + '/main.js'],
+		vendor: ['webpack-hot-middleware/client?noInfo=true&reload=true','./module/' + enterdir + '/vendor.js']
+  },
 	output: {
-		path: resolve(__dirname, '../dist'),
-		filename: 'static/js/[name][hash].js',
-		chunkFilename: 'static/js/[id][chunkhash].js?',
+		path: resolve(`dist/${enterdir}`),
+		filename: `static/js/[name][hash].js`,
+		chunkFilename: `static/js/[id][chunkhash].js`,
 		publicPath: publicPath
 	},
 	module: {
 		rules: [{
 				test: /\.vue$/,
 				loader: 'vue-loader',
-				exclude: /node_modules/,
+        exclude: /node_modules/,
+        include: [resolve('src'), resolve('test'), resolve('module')],
 				options: {
 					loaders: {
 						scss: 'vue-style-loader!css-loader!sass-loader',
@@ -33,7 +35,8 @@ module.exports = {
 				test: /\.js$/,
 				use: [
 					'babel-loader'
-				],
+        ],
+        include: [resolve('src'), resolve('test'), resolve('module')],
 				exclude: /node_modules/
 			},
 			{
@@ -41,7 +44,7 @@ module.exports = {
 				use: [{
 					loader: 'html-loader',
 					options: {
-						root: resolve(__dirname, 'src'),
+						root: resolve('/'),
 						attrs: ['img:src', 'link:href']
 					}
 				}]
@@ -50,7 +53,7 @@ module.exports = {
 				test: /\.(js|vue)$/,
 				loader: 'eslint-loader',
 				enforce: 'pre',
-				include: [resolve('src'), resolve('test')],
+				include: [resolve('src'), resolve('test'), resolve('module')],
 				exclude: /node_modules/,
 				options: {
 					formatter: require('eslint-friendly-formatter'),
@@ -74,10 +77,18 @@ module.exports = {
 					loader: 'url-loader',
 					options: {
 						limit: 10000,
-						name: 'static/img/[name].[ext]?[hash]'
+						name: `static/img/[name].[ext]?[hash]`
 					}
 				}]
-			}
+      },
+      {
+        test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
+        loader: 'url-loader',
+        options: {
+          limit: 1000,
+          name: `media/[name].[ext]?v=[hash:7]`
+        }
+      },
 		]
 	},
 	plugins: [
@@ -102,7 +113,7 @@ module.exports = {
 		}),
 		new HtmlWebpackPlugin({
 			filename: 'index.html',
-			template: 'index.html',
+			template: resolve(`index.html`),
 			inject: true
 		}),
 		new VueLoaderPlugin()
@@ -113,8 +124,10 @@ module.exports = {
 	},
 	resolve: {
 		alias: {
-			'~': resolve(__dirname, '../src/components')
-		}
-	}
+			'~': resolve('module/Test/components')
+    },
+    extensions: [' ', '.js', '.vue', '.json', '.html'],
+  }
+  
 
 }

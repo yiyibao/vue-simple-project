@@ -3,9 +3,9 @@
 # 开始
 
 ```bash
-npm i
+npm install
 
-启动 npm run dev
+启动 npm run dev Test
 
 打包 npm run build
 
@@ -22,19 +22,35 @@ __.babel
 |__package.json
 |__postcss.config.js
 |__README.md
-|__src
-    |__App.vue
-	|__seetes
-    |__components
-    |__img
-    |__index.html
-    |__main.js
-    |__router
-    |__store
-    |__style
-    |__utils
-    |__vendor.js
+|__index.html
+|__static
+|__module
+        |__Test1
+              |
+              |__App.vue
+               |__assets
+              |__components
+              |__img
+              |__main.js
+              |__router
+              |__store
+              |__style
+              |__utils
+              |__vendor.js
+          |__Test2
+              |
+              |__App.vue
+               |__assets
+              |__components
+              |__img
+              |__main.js
+              |__router
+              |__store
+              |__style
+              |__utils
+              |__vendor.js
 |__build
+  |__dev-server.js
     |__webpack.base.conf.js
 	|__webpack.dev.conf.js
 	|__webpack.pro.conf.js

@@ -3,5 +3,5 @@
 # Ignore built files except build/index.js
 dist/*
 !dist/index.js
-src/vendor.js
+module/*/vendor.js
 README.md
