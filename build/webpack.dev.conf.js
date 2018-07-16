@@ -3,22 +3,10 @@ const baseWebpackConfig = require('./webpack.base.conf')
 const url = require('url')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const packageConfig = require('../package.json')
-const createNotifierCallback = () => {
-  const notifier = require('node-notifier')
+const path = require('path')
+const notifier = require('node-notifier')
+var ICON = path.join(__dirname, 'logo.png')
 
-  return (severity, errors) => {
-    if (severity !== 'error') return
-    const error = errors[0]
-    const filename = error.file && error.file.split('!').pop()
-    console.error(error.message)
-    notifier.notify({
-      title: packageConfig.name,
-      message: severity + ': ' + error.name,
-      subtitle: filename || '',
-      icon: path.join(__dirname, 'logo.png')
-    })
-  }
-}
 module.exports = merge(baseWebpackConfig, {
   mode: 'development',
   module: {
@@ -56,8 +44,20 @@ module.exports = merge(baseWebpackConfig, {
     new FriendlyErrorsPlugin({
       compilationSuccessInfo: {
         messages: [`Your application is running here: http://127.0.0.1:8808`],
+        notes: []
       },
-      onErrors: true ? createNotifierCallback() : undefined
+      onErrors: (severity, errors) => {
+        if (severity !== 'error') {
+          return;
+        }
+        const error = errors[0];
+        notifier.notify({
+          title: "Webpack error",
+          message: severity + ': ' + error.name,
+          subtitle: error.file || '',
+          icon: ICON
+        });
+      }
     })
   ]
 })
