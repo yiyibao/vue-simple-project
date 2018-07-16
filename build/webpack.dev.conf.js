@@ -6,6 +6,12 @@ const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const notifier = require('node-notifier')
 var ICON = path.join(__dirname, 'logo.png')
 
+const config={
+  host: '127.0.0.1',
+  port:8808
+}
+
+
 module.exports = merge(baseWebpackConfig, {
 	module: {
 		rules: [{
@@ -20,8 +26,8 @@ module.exports = merge(baseWebpackConfig, {
 		]
 	},
 	devServer: {
-		host: '127.0.0.1',
-    port: 8808,
+		host: config.host,
+    port: config.port,
     quiet:true,
 		proxy: {
 			'/api': {
@@ -40,7 +46,7 @@ module.exports = merge(baseWebpackConfig, {
   plugins:[
     new FriendlyErrorsPlugin({
       compilationSuccessInfo: {
-        messages: [`Your application is running here: http://127.0.0.1:8808`],
+        messages: [`Your application is running here: http://${config.host}:${config.port}`],
         notes: []
       },
       onErrors: (severity, errors) => {
