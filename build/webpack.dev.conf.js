@@ -7,6 +7,9 @@ const path = require('path')
 const notifier = require('node-notifier')
 var ICON = path.join(__dirname, 'logo.png')
 
+var host = '127.0.0.1';  
+const prot = 8080
+
 module.exports = merge(baseWebpackConfig, {
   mode: 'development',
   module: {
@@ -22,8 +25,8 @@ module.exports = merge(baseWebpackConfig, {
     ]
   },
   devServer: {
-    host: '127.0.0.1',
-    port: 8808,
+    host: host,
+    port: prot,
     quiet: true,
     proxy: {
       '/api': {
@@ -43,9 +46,10 @@ module.exports = merge(baseWebpackConfig, {
   plugins: [
     new FriendlyErrorsPlugin({
       compilationSuccessInfo: {
-        messages: [`Your application is running here: http://127.0.0.1:8808`],
+        messages: [`Your application is running here: http://127.0.0.1:${prot}`],
         notes: []
       },
+      clearConsole: true,
       onErrors: (severity, errors) => {
         if (severity !== 'error') {
           return;
