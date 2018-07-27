@@ -20,8 +20,8 @@ module.exports = {
   rules: {
     'no-multiple-empty-lines': 0,
     'no-new':0,
-    'indent': [1,4],
-	  'no-tabs': 1,
+    'indent': [1,'tab'],
+    'no-tabs': 0,
     // allow async-await
     'generator-star-spacing': 'off',
     // allow debugger during development
