@@ -14,8 +14,8 @@ module.exports = {
         "sourceType": "module"
     },
     "rules": {
-        'indent': [1,4],
-	'no-tabs': 1,
+        'indent': [1,'tab'],
+	'no-tabs': 0,
 		eqeqeq: 0,//禁止检测等于比较
 		'no-console': 0,//禁止检测console
         "linebreak-style": [
