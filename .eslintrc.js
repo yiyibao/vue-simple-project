@@ -19,9 +19,9 @@ module.exports = {
   // add your custom rules here
   rules: {
     'no-multiple-empty-lines': 0,
-    'no-tabs': 'off',
     'no-new':0,
-    'indent': [0,2],
+    'indent': [1,4],
+	  'no-tabs': 1,
     // allow async-await
     'generator-star-spacing': 'off',
     // allow debugger during development
