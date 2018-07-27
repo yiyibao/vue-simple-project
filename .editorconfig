@@ -6,7 +6,7 @@ charset = utf-8
 #缩进类型  可选space和tab
 indent_style = tab
 #缩进数量可选整数值2 or 4,或者tab
-indent_size = tab
+indent_size = 4
 #换行符的格式
 end_of_line = lf
 # 是否在文件的最后插入一个空行  可选true和false
