@@ -22,7 +22,6 @@ module.exports = merge(baseWebpackConfig, {
   },
   devtool: '#eval-source-map',
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
     new NotifierPlugin({
       title: '编译完成...',
       alwaysNotify:true,
