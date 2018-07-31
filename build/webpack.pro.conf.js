@@ -11,6 +11,10 @@ const enterdir = JSON.parse(process.env.npm_config_argv).remain[0]
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 module.exports = merge(baseWebpackConfig, {
 	mode: 'production',
+	entry: {
+		index: './module/' + enterdir + '/main.js',
+		vendor: './module/' + enterdir + '/vendor.js'
+	},
 	optimization: {
 		minimizer: [
 			new UglifyJsPlugin({

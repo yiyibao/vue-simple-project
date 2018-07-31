@@ -4,14 +4,15 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const publicPath = '/'
 const enterdir = process.argv.splice(2)[0]
-function resolve (dir) {
-  return path.join(__dirname, '..', dir)
+
+function resolve(dir) {
+	return path.join(__dirname, '..', dir)
 }
 module.exports = {
 	entry: {
-    index: ['webpack-hot-middleware/client?noInfo=true&reload=true','./module/' + enterdir + '/main.js'],
-		vendor: ['webpack-hot-middleware/client?noInfo=true&reload=true','./module/' + enterdir + '/vendor.js']
-  },
+		index: ['webpack-hot-middleware/client?noInfo=true&reload=true', './module/' + enterdir + '/main.js'],
+		vendor: ['webpack-hot-middleware/client?noInfo=true&reload=true', './module/' + enterdir + '/vendor.js']
+	},
 	output: {
 		path: resolve(`dist/${enterdir}`),
 		filename: `static/js/[name][hash].js`,
@@ -22,8 +23,8 @@ module.exports = {
 		rules: [{
 				test: /\.vue$/,
 				loader: 'vue-loader',
-        exclude: /node_modules/,
-        include: [resolve('src'), resolve('test'), resolve('module')],
+				exclude: /node_modules/,
+				include: [resolve('src'), resolve('test'), resolve('module')],
 				options: {
 					loaders: {
 						scss: 'vue-style-loader!css-loader!sass-loader',
@@ -35,8 +36,8 @@ module.exports = {
 				test: /\.js$/,
 				use: [
 					'babel-loader'
-        ],
-        include: [resolve('src'), resolve('test'), resolve('module')],
+				],
+				include: [resolve('src'), resolve('test'), resolve('module')],
 				exclude: /node_modules/
 			},
 			{
@@ -80,18 +81,19 @@ module.exports = {
 						name: `static/img/[name].[ext]?[hash]`
 					}
 				}]
-      },
-      {
-        test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
-        loader: 'url-loader',
-        options: {
-          limit: 1000,
-          name: `media/[name].[ext]?v=[hash:7]`
-        }
-      },
+			},
+			{
+				test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
+				loader: 'url-loader',
+				options: {
+					limit: 1000,
+					name: `media/[name].[ext]?v=[hash:7]`
+				}
+			},
 		]
 	},
 	plugins: [
+		new webpack.HotModuleReplacementPlugin(),
 		new webpack.optimize.SplitChunksPlugin({
 			chunks: "all",
 			minSize: 30000,
@@ -119,15 +121,15 @@ module.exports = {
 		new VueLoaderPlugin()
 	],
 	externals: { // 抽离第三方库
-		 "vue":"window.Vue",
-		  "vue-router":"window.VueRouter"
+		"vue": "window.Vue",
+		"vue-router": "window.VueRouter"
 	},
 	resolve: {
 		alias: {
 			'~': resolve('module/Test/components')
-    },
-    extensions: [' ', '.js', '.vue', '.json', '.html'],
-  }
-  
+		},
+		extensions: [' ', '.js', '.vue', '.json', '.html'],
+	}
+
 
 }
