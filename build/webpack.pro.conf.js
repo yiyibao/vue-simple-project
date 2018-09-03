@@ -8,7 +8,10 @@ const path =require('path')
 // 一个优化'压缩CSS的WebPack插件
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 module.exports = merge(baseWebpackConfig, {
-	mode: 'production',
+  mode: 'production',
+  output: {
+    publicPath: './'
+  },
 	optimization: {
 		minimizer: [
 			new UglifyJsPlugin({
@@ -65,7 +68,7 @@ module.exports = merge(baseWebpackConfig, {
 		new MiniCssExtractPlugin({
 			filename: 'static/css/[name][hash].css',
 			chunkFilename: 'static/css/[name][hash].css',
-			sourceMap: false
+			sourceMap: true
 		}),
 		 // 复制静态文件
 		new CopyWebpackPlugin([

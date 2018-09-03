@@ -7,7 +7,7 @@ const path = require('path')
 const notifier = require('node-notifier')
 var ICON = path.join(__dirname, 'logo.png')
 
-var host = '127.0.0.1';  
+var host = '192.168.23.10';  
 const prot = 8080
 
 module.exports = merge(baseWebpackConfig, {
@@ -42,11 +42,11 @@ module.exports = merge(baseWebpackConfig, {
       index: url.parse('/assets/').pathname
     }
   },
-  devtool: '#eval-source-map',
+  devtool: '#source-map',
   plugins: [
     new FriendlyErrorsPlugin({
       compilationSuccessInfo: {
-        messages: [`Your application is running here: http://127.0.0.1:${prot}`],
+        messages: [`Your application is running here: http://${host}:${prot}`],
         notes: []
       },
       clearConsole: true,
