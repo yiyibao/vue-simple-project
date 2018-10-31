@@ -7,7 +7,7 @@ const path = require('path')
 const notifier = require('node-notifier')
 var ICON = path.join(__dirname, 'logo.png')
 
-var host = '192.168.23.10';  
+var host = '0.0.0.0';  
 const prot = 8080
 
 module.exports = merge(baseWebpackConfig, {
