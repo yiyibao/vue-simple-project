@@ -81,12 +81,12 @@ module.exports = merge(baseWebpackConfig, {
 			from: path.resolve(__dirname, '../static/css'),
 			to:'static/css',
 			ignore: ['.*']
-    },
-    {
-			from: path.resolve(__dirname, '../static/img'),
-			to:'static/img',
-			ignore: ['.*']
     }
+    //{
+			//from: path.resolve(__dirname, '../static/img'),
+		//	to:'static/img',
+		//	ignore: ['.*']
+   // }
 		])
 	],
 	devtool: '#source-map'
