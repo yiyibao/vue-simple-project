@@ -39,7 +39,7 @@ module.exports = merge(baseWebpackConfig, {
     ]
   },
   devServer: {
-    host: host,
+    host: '0.0.0.0',
     port: prot,
     quiet: true,
     proxy: {
