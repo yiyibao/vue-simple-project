@@ -13,14 +13,14 @@ const prot = 8080
 
 var interfaces = require('os').networkInterfaces();
 
-for(var devName in interfaces){
-    var iface = interfaces[devName];
-    for(var i=0;i<iface.length;i++){
-       var alias = iface[i];
-       if(alias.family === 'IPv4' && alias.address !== '127.0.0.1' && !alias.internal){
+for (var devName in interfaces) {
+  var iface = interfaces[devName];
+  for (var i = 0; i < iface.length; i++) {
+    var alias = iface[i];
+    if (alias.family === 'IPv4' && alias.address !== '127.0.0.1' && !alias.internal) {
       host = alias.address;
-       }
     }
+  }
 }
 
 
@@ -39,7 +39,7 @@ module.exports = merge(baseWebpackConfig, {
     ]
   },
   devServer: {
-    host: host,
+    host: '0.0.0.0',
     port: prot,
     quiet: true,
     proxy: {
