@@ -5,3 +5,5 @@ dist/*
 !dist/index.js
 src/vendor.js
 README.md
+src/index2.js
+src/index3.js

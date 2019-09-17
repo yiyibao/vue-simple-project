@@ -3,7 +3,8 @@ const {
 } = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const publicPath = ''
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const publicPath = '/'
 
 module.exports = {
 	entry: {
@@ -13,13 +14,14 @@ module.exports = {
 	output: {
 		path: resolve(__dirname, '../dist'),
 		filename: 'static/js/[name][hash].js',
-		chunkFilename: '[id].js?[chunkhash]',
+		chunkFilename: 'static/js/[id][chunkhash].js?',
 		publicPath: publicPath
 	},
 	module: {
 		rules: [{
 				test: /\.vue$/,
 				loader: 'vue-loader',
+				exclude: /node_modules/,
 				options: {
 					loaders: {
 						scss: 'vue-style-loader!css-loader!sass-loader',
@@ -49,10 +51,11 @@ module.exports = {
 				loader: 'eslint-loader',
 				enforce: 'pre',
 				include: [resolve('src'), resolve('test')],
+				exclude: /node_modules/,
 				options: {
-					// formatter: require('eslint-friendly-formatter'),
-					// 不符合Eslint规则时只警告(默认运行出错)
-					// emitWarning: !config.dev.showEslintErrorsInOverlay
+					formatter: require('eslint-friendly-formatter'),
+					//不符合Eslint规则时只警告(默认运行出错)
+					emitWarning: true
 				}
 			},
 			{
@@ -78,16 +81,35 @@ module.exports = {
 		]
 	},
 	plugins: [
-		new webpack.optimize.CommonsChunkPlugin({
-			names: ['vendor', 'manifest']
+		new webpack.optimize.SplitChunksPlugin({
+			chunks: "all",
+			minSize: 30000,
+			minChunks: 1,
+			maxAsyncRequests: 5,
+			maxInitialRequests: 3,
+			name: true,
+			cacheGroups: {
+				default: {
+					minChunks: 2,
+					priority: -20,
+					reuseExistingChunk: true,
+				},
+				vendors: {
+					test: /[\\/]node_modules[\\/]/,
+					priority: -10
+				}
+			}
 		}),
 		new HtmlWebpackPlugin({
-			template: 'src/index.html'
-		})
+			filename: 'index.html',
+			template: 'index.html',
+			inject: true
+		}),
+		new VueLoaderPlugin()
 	],
 	externals: { // 抽离第三方库
-		/* "vue":"window.Vue",
-		  "vue-router":"window.VueRouter"*/
+		 "vue":"window.Vue",
+		  "vue-router":"window.VueRouter"
 	},
 	resolve: {
 		alias: {

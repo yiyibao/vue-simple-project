@@ -1,16 +1,16 @@
 <template>
-	<div class="view">
-		<!-- <transition name="router-fade" mode="out-in"> -->
-			<router-view></router-view>
-		<!-- </transition> -->
-	</div>
+<div class="view view2">
+<transition name="router-fade" mode="out-in">
+<router-view></router-view>
+</transition>
+</div>
 </template>
 
 <style>
-/*.router-fade-enter-active, .router-fade-leave-active {
-  	transition: opacity .3s;
-}*/
+.router-fade-enter-active, .router-fade-leave-active {
+transition: opacity .3s;
+}
 .router-fade-enter, .router-fade-leave-active {
-  	opacity: 0;
+opacity: 0;
 }
 </style>
