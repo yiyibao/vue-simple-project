@@ -5,6 +5,8 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const path =require('path')
+// const webpack = require('webpack')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 // 一个优化'压缩CSS的WebPack插件
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 module.exports = merge(baseWebpackConfig, {
@@ -54,6 +56,7 @@ module.exports = merge(baseWebpackConfig, {
 		}]
 	},
 	plugins: [
+		new CleanWebpackPlugin(),
 		new HtmlWebpackPlugin({
 			filename: 'index.html',
 			template: path.resolve('index.html'),

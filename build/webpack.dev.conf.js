@@ -7,20 +7,20 @@ const path = require('path')
 const notifier = require('node-notifier')
 var ICON = path.join(__dirname, 'logo.png')
 
-var host = '127.0.0.1';
+var host = '0.0.0.0'; 
 
 const prot = 8080
 
-var interfaces = require('os').networkInterfaces();
+var interfaces = require('os').networkInterfaces();  
 
-for (var devName in interfaces) {
-  var iface = interfaces[devName];
-  for (var i = 0; i < iface.length; i++) {
-    var alias = iface[i];
-    if (alias.family === 'IPv4' && alias.address !== '127.0.0.1' && !alias.internal) {
-      host = alias.address;
-    }
-  }
+for(var devName in interfaces){  
+    var iface = interfaces[devName];  
+    for(var i=0;i<iface.length;i++){  
+       var alias = iface[i];  
+       if(alias.family === 'IPv4' && alias.address !== '127.0.0.1' && !alias.internal){  
+      host = alias.address;  
+       }  
+    }  
 }
 
 
@@ -60,7 +60,7 @@ module.exports = merge(baseWebpackConfig, {
   plugins: [
     new FriendlyErrorsPlugin({
       compilationSuccessInfo: {
-        messages: [`Your application is running here: http://127.0.0.1:${prot}`],
+        messages: [`Your application is running here: http://0.0.0.0:${prot}`],
         notes: [`Your application is also running here: http://${host}:${prot}`]
       },
       clearConsole: true,

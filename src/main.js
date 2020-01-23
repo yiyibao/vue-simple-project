@@ -1,20 +1,19 @@
+/* eslint-disable */ 
+import _ from 'loadsh'
+import axios from 'axios'
+import Element from 'element-ui'
+import Vue from 'vue'
+import Vuex from 'vuex'
+import VueRouter from 'vue-router'
+import errorWatch from 'pv-err-watch'
+
 import Routes from './router/router'
 import App from './App.vue'
+import store from './store/store'
 
 import './style/index.scss'
 
-import axios from 'axios'
-
-import store from './store/store'
-
-import errorWatch from 'pv-err-watch'
-
-
-const VueRouter = window.VueRouter
-const Vue = window.Vue
-
 Vue.use(VueRouter)
-
 Vue.prototype.$axios = axios
 
 errorWatch

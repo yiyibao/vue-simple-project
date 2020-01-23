@@ -8,8 +8,8 @@ const publicPath = '/'
 
 module.exports = {
 	entry: {
-		vendor: './src/vendor',
-		index: ['babel-polyfill', './src/main.js']
+		index: './src/main.js',
+		// vendor: './src/vendor'
 	},
 	output: {
 		path: resolve(__dirname, '../dist'),
@@ -73,7 +73,7 @@ module.exports = {
 				use: [{
 					loader: 'url-loader',
 					options: {
-						limit: 10000,
+						limit: 10,
 						name: 'static/img/[name].[ext]?[hash]'
 					}
 				}]
@@ -81,9 +81,13 @@ module.exports = {
 		]
 	},
 	plugins: [
+		new webpack.DllReferencePlugin({
+			context: __dirname,
+			manifest: require(resolve(__dirname,'../vendor-manifest.json'))
+		}),
 		new webpack.optimize.SplitChunksPlugin({
 			chunks: "all",
-			minSize: 30000,
+			minSize: 3000,
 			minChunks: 1,
 			maxAsyncRequests: 5,
 			maxInitialRequests: 3,
@@ -108,8 +112,12 @@ module.exports = {
 		new VueLoaderPlugin()
 	],
 	externals: { // 抽离第三方库
-		 "vue":"window.Vue",
-		  "vue-router":"window.VueRouter"
+		// "vue":"window.Vue",
+		// "vue-router":"window.VueRouter",
+		// "vuex":"window.Vuex",
+		// "axios":"window.axios",
+		// "_":"window._",
+		// "Element":"window.Element"
 	},
 	resolve: {
 		alias: {
