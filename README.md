@@ -1,6 +1,25 @@
 # vue-simple-project
-# node >6
-# 开始
+
+## node >6
+
+## 开始
+
+@startuml
+
+actor A
+actor B
+
+A -up-> (up)
+A -right-> (center)
+A -down-> (down)
+A -left-> (left)
+
+B -up-> (up)
+B -left-> (center)
+B -right-> (right)
+B -down-> (down)
+
+@enduml
 
 ```bash
 npm i
