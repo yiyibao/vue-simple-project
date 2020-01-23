@@ -10,3 +10,4 @@ thumbs.db
 package-lock.json
 .vscodes
 .vscode/
+dist/
