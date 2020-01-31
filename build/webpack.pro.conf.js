@@ -9,10 +9,14 @@ const path =require('path')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 // 一个优化'压缩CSS的WebPack插件
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+
+// 项目设置 自己的 publicPath: "http://cdn.example.com/assets/[hash]/" 
+const publicPath = '/'
+
 module.exports = merge(baseWebpackConfig, {
   mode: 'production',
   output: {
-    publicPath: './'
+    publicPath: publicPath
   },
 	optimization: {
 		minimizer: [
