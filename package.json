@@ -1,7 +1,7 @@
 {
   "name": "vue-pro",
   "description": "A Vue.js project",
-  "author": "baolilei",
+  "author": "地铁程序员",
   "private": true,
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
@@ -12,7 +12,6 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
-    "elem": "0.0.60",
     "element-ui": "^2.13.0",
     "loadsh": "0.0.4",
     "pv-err-watch": "^0.0.3",
