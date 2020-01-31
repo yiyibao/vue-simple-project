@@ -1,5 +1,9 @@
 <template>
   <div class="box">
+    <el-rate
+    v-model="value2"
+    :colors="colors">
+  </el-rate>
     <img src="../assets/img/abc.jpeg" alt="" srcset=""><!--
     --><img src="../assets/img/abc.jpeg" alt="" srcset="">
     <input type="text" id="input">
@@ -31,7 +35,8 @@
 export default {
   data(){
     return{
-      inputValue: '100'
+      inputValue: '100',
+      value2:null
     }
   },
   mounted(){

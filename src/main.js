@@ -1,7 +1,8 @@
 /* eslint-disable */ 
 import _ from 'loadsh'
 import axios from 'axios'
-import Element from 'element-ui'
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css';
 import Vue from 'vue'
 import Vuex from 'vuex'
 import VueRouter from 'vue-router'
@@ -13,12 +14,13 @@ import store from './store/store'
 
 import './style/index.scss'
 
+Vue.use(ElementUI);
 Vue.use(VueRouter)
 Vue.prototype.$axios = axios
 
 errorWatch
   .config(Vue, '**.**.com', { 'topic': '0630' }, {
-    url: ['./static/js/vue.min.js']
+    url: []
   })
   .htmlError()
 
